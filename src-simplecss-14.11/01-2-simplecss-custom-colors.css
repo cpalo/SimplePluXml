@@ -1,0 +1,227 @@
+/**
+ * @package 	 SimpleCss 
+ * @subpackage   CSS Variables - Colors
+ * @version 	 14.11
+ * @file		 css/src-simplecss-14.11/01-2-simplecss-custom-colors.css 
+ * @lastmodified 2024-11-28
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 01 - CUSTOM PROPERTIES - COLORS 
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	1. Custom properties		
+		1.1 - Fonts - Appareance
+		1.2 - Fonts - Sizes
+		1.3 - Helpers for spacing
+        1.4 - Line-Height & Vertical Rythm
+		1.5 - Responsive Typography
+		1.6 - Colors Pallet
+		1.7 - Functionnal assignations : Elements	
+		1.8 - Functionnal assignations : Layouts			
+ */
+
+/* ------------------------------------------------------------
+ * - 1.6 - Colors Pallet 
+ * ------------------------------------------------------------ */
+ 
+/* https://web-color.aliasdmc.fr/convertisseur-couleur-rgb-hsl-hexa-predefini.php */
+
+:root {
+	
+	/**
+ 	 * Theme Colors 	
+	 * Primary color: This is where the user’s attention goes. 
+	 * Calls-to-action, buttons, and any other important information should utilize the primary color.
+	 	
+	--primary-color-dark:;
+	--primary-color: var(--pls-color-blue);
+	--primary-color-light:;
+	*/
+	/**
+	 * The secondary colors are used to highlight less important elements. 
+	 * or..
+   	 * Secondary colors are best for:
+		 Floating action buttons
+		 Selection controls, like sliders and switches
+		 Highlighting selected text
+		 Progress bars
+		 Links and headlines
+	
+	--secondary-color-dark:;
+	--secondary-color:;
+	--secondary-color-light:;	
+	*/ 
+	
+	--color-primary: var(--pls-color-blue);
+	--color-primary-light: var(--pls-color-blue-light);
+	
+	/* SimpleCss Colors: Feedback Colors */
+	
+	--pls-color-red-light:  hsl(5, 81%, 94%); 	 
+	--pls-color-red: 	    hsl(6, 78%, 53%);
+	--pls-color-red-dark:   hsl(6, 77%, 42%);		
+	
+	--pls-color-orange-light:hsl(26, 81%, 92%);	
+	--pls-color-orange: 	 hsl(28, 80%, 47%);	
+	--pls-color-orange-dark: hsl(29, 80%, 99%);	
+	
+	--pls-color-yellow-light:hsl(60,100%, 94%);
+	--pls-color-yellow: 	 hsl(60,100%, 44%);	
+	--pls-color-yellow-dark: hsl(60, 77%, 41%);		/* plx : 45 */
+	
+	--pls-color-green-light:hsl(120, 63%, 89%);	
+	--pls-color-green: 		hsl(120, 63%, 37%);	
+	--pls-color-green-dark: hsl(120, 62%, 29%);		/* plx : 145 */
+	
+	--pls-color-blue-light: hsl(240, 71%, 92%);		/* plx : 204 */
+	--pls-color-blue:  		hsl(210, 70%, 50%);		/* !blue = 240 */
+	--pls-color-blue-dark:  hsl(240, 70%, 41%);	
+
+	/* Neutral Colors : Gray Scale */
+	
+	--pls-color-black:     		    hsl(0, 0%, 0%); 
+	--pls-color-blackgray:  		hsl(0, 0%, 7%);	
+		--pls-color-blackgray-light:hsl(0, 0%, 13%);	
+		--pls-color-darkgray-dark:  hsl(0, 0%, 20%);
+	--pls-color-darkgray: 		    hsl(0, 0%, 25%); 
+		--pls-color-darkgray-light: hsl(0, 0%, 33%); 
+		--pls-color-gray-dark: 	    hsl(0, 0%, 41%);     /* dimgray */
+	--pls-color-gray: 	  		    hsl(0, 0%, 50%);     /* gray */
+		--pls-color-gray-light:	    hsl(0, 0%, 66%);   	 /* darkgray */
+		--pls-color-lightgray-dark: hsl(0, 0%, 75%);  	 /* silver */
+	--pls-color-lightgray: 		    hsl(0, 0%, 83%);  	 /* lightgray */
+		--pls-color-lightgray-light:hsl(0, 0%, 86%);  	 /* gainsboro */
+	--pls-color-whitegray:		    hsl(0, 0%, 93%);	 /*	whitesmoke */
+	--pls-color-white:              hsl(0, 0%, 100%);  	
+}
+
+
+/* ------------------------------------------------------------
+ * - 1.7 - Functionnal assignations : Elements 
+ * ------------------------------------------------------------ */
+ 
+:root {
+	
+	--hsl-base: 0, 0%, 0%; 	/* black */		
+	
+	/* Text Colors */
+	--text-color:             var(--pls-color-darkgray);	/* hsl(0, 0%, 25%); */
+	--medium-text-color:      hsla(var(--hsl-base), 0.45);  /* hsl(0, 0%, 55%); */
+	--light-text-color:       hsla(var(--hsl-base), 0.25);  /* hsl(0, 0%, 75%); */
+	
+	/* Borders & BackgroundsColors */
+	--dark-border-color:  var(--pls-color-darkgray-light);
+	--medium-border-color:hsl(0, 0%, 80%); 
+	--light-border-color: hsl(0, 0%, 90%);	
+	--medium-border-color-hsla: hsla(var(--hsl-base), 0.2);
+	--light-border-color-hsla: 	hsla(var(--hsl-base), 0.1);
+	
+	--medium-background-color:hsl(0, 0%, 90%);	
+	--light-background-color: hsl(0, 0%, 95%);
+	--medium-background-color-hsla:hsla(var(--hsl-base), 0.1);	
+	--light-background-color-hsla: hsla(var(--hsl-base), 0.05);
+	
+	/* Box Shadows */ 
+	--hsl-shadow: 0, 0%, 15%; 
+	-–shadow-01: 0px 2px 4px hsla(var(--hsl-shadow), 0.1); 
+	-–shadow-02: 0px 4px 8px hsla(var(--hsl-shadow), 0.1); 
+	-–shadow-03: 0px 6px 12px hsla(var(--hsl-shadow), 0.1); 
+	-–shadow-04: 0px 8px 16px hsla(var(--hsl-shadow), 0.1); 
+	–-shadow-05: 0px 10px 20px hsla(var(--hsl-shadow), 0.1); 
+	-–shadow-06: 0px 12px 24px hsla(var(--hsl-shadow), 0.1); 
+	
+	/* Blockquotes */	
+	--blockquote-border-color: var(--dark-border-color); 
+	--blockquote-background-color:;	
+
+	/* Preformat */
+	--pre-border-color: hsla(var(--hsl-base), 0.075);
+	--pre-background-color:;
+	--code-border-color: hsla(var(--hsl-base), 0.09);
+	--code-background-color: hsla(var(--hsl-base), 0.05);
+	--code-color: hsl(245, 33%, 8%);
+	--pre-code-color: hsl(245, 33%, 8%);
+	
+	/* Links */
+	--link-color:       var(--color-primary, var(--pls-color-blue));
+	--link-hover-color: var(--text-color, var(--pls-color-darkgray);
+	
+	/* Tables */
+	--table-border-color: var(--light-border-color);
+	--table-tr-border-color:;
+	--table-tr-hover-background-color: var(--color-primaary-light, var(--pls-color-blue-light));
+	
+	/* Medias */
+	--figure-caption-color:;
+	--figure-caption-background-color:;
+	--media-link-focus-outline-color:;
+	
+	/* Forms */
+	 --input-border-color: var(--light-border-color);			
+	 --input-focus-border-color: var(--pls-color-blue);	
+
+	--input-background-color: var(--pls-color-gray);			   		 	  		 
+	--input-hover-background-color: var(--pls-color-darkgray-light); 	  	 	 
+	--input-text-color: var(--pls-color-white);					   				 		 	
+	--elts-form-disabled-background-color: var(--pls-color-lightgray); 
+	--elts-form-disabled-color: var(--pls-color-gray-light);
+
+	/* Feedbacks */
+	--alert-background-color: var(--pls-color-gray);
+	--alert-text-color: var(--pls-color-white);
+
+	/* Buttons */
+	--button-background-color: var(--primary-color, var(--pls-color-gray));
+	--button-hover-bg-color: var(--pls-color-gray-dark);
+	--button-text-color: var(--pls-color-white);
+	--button-hover-text-color: var(--pls-color-white);	
+
+	
+
+
+--mark-background-color:;	
+}
+
+
+/* ------------------------------------------------------------
+ * - 1.8 - Functionnal assignations : Layouts 
+ * ------------------------------------------------------------ */
+ 
+/* These variables are found in the theme variables */
+ 
+:root {
+	
+	/* Page */
+	--body-background-color:  var(--color-white);
+	--page-background-color:  var(--color-white);
+	--site-title-color:  var(--color-dark-gray);
+	--site-title-hover-color: var(--primary-color);
+	
+	/* Header Bar */
+	--header-bar-background-color: var(--light-border-color);
+	--header-bar-border-color:     var(--light-border-color);
+	--header-bar-text-color:       var(--text-color);
+	--header-bar-text-hover-color: var(--primary-color);	
+	
+	/* Navigation */	 
+	--navi-color:        var(--text-color);
+	--navi-hover-color:  var(--primary-color);
+	--navi-border-color: var(--text-color);
+	
+	/* Posts */
+	--title-color      : var(--text-color);
+	--title-hover-color: var(--primary-color);
+
+	/* Widgets */
+	--widget-title-color: var(--text-color);
+	
+	/* Footer */
+	--footer-background-color: var(--light-border-color);
+	--footer-border-color:     var(--light-border-color);
+	--footer-text-color:       var(--text-color);
+	--footer-text-hover-color: var(--primary-color);	
+}

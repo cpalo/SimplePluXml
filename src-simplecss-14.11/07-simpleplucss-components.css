@@ -1,0 +1,383 @@
+/**
+ * @package 	 simplePluCss 
+ * @subpackage   Others Components
+ * @version 	 14.11
+ * 
+ * @file		 src-simplecss-14.11/07-simpleplucss-components.css 
+ * @lastmodified 2024-11-28 
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 07 - OTHER COMPONENTS
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	Table of Content :
+	------------------
+	7 - Others Components
+		7.1 - modal-xxxx
+		7.2 - Gallery & Images 
+		7.3 - Alert
+		7.4 - Button
+		7.5 - Progress Bars 
+		7.6 - Elements Badge & Label 
+		7.7 - Frame
+		7.8 - Tooltip
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 7.1 - modal-xxxx
+ * ------------------------------------------------------------ */
+ 
+ .modal-mask {
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0, 0%, 0%, .5);
+	transition: opacity .3s ease;
+}
+
+.modal-container {
+	width: 450px;
+	margin: var(--spacing-25) auto 0;	
+	padding: var(--spacing-125) var(--spacing-2);	
+	background-color: var(--color-white);
+	border-radius: 2px;
+	box-shadow: 0 2px 8px hsla(0, 0%, 0%, .33));
+	transition: all .3s ease;
+	font-family: var(--text-font);
+}
+
+.modal-header {
+	margin-top: 0;
+}
+
+.modal-body {
+	margin: var(--spacing-125) 0; /* 20px 0; */
+}
+
+.modal-footer {
+	margin: var(--spacing-125) 0; /* 20px 0; */
+	text-align: right;
+}
+
+.modal-container button:hover {
+	color: var(--plx-color-darkgray-dark);
+	background-color: transparent;
+}
+
+.modal-btn-close {
+	background: transparent;
+	border: 0;
+	height: var(--unit-25); 	 			 /* 10px */
+	line-height: var(--unit-25); 		 	/* 10px */
+	margin-left: var(--unit-05); 			 /*  2px */
+	margin-right: calc(var(--unit-05) * -1); /* -2px */
+	padding: var(--unit-05); 
+	text-decoration: none;
+	width:var(--unit-25);				/* 10px */
+	color: var(--plx-color-gray-light);		/* hsl(0, 0%, 60%) i.e #999; */
+}
+
+.modal-btn-close:after {
+	display: inline-block;
+	content: "\00d7"; /* This will render the 'X' */
+}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 7.2 - Gallery & Images
+ * ------------------------------------------------------------ */
+ 
+.gallery {
+	list-style: none;
+	margin-block: calc(var(--spacing-1) * -1);
+	overflow: hidden;
+	padding-left: 0;
+}
+
+	.gallery li {
+		float: left;
+		padding-top: var(--margin-0);
+		padding-bottom: var(--margin-1);
+		padding-inline: var(--spacing-1);	
+	}
+
+.img-circle {
+	border-radius: 50%;
+}
+.img-rounded {
+	border-radius: var(--radius);
+}
+  
+ 
+/* ------------------------------------------------------------
+ * - 7.3 - Alert
+ * ------------------------------------------------------------ */
+
+.alert {
+	border-radius: var(--radius);
+	margin-bottom: var(--margin-1);
+	padding: var(--spacing-1);
+	background-color: var(--alert-background-color);
+	color: var(--alert-text-color);
+}
+.alert a,
+.alert a:hover {
+	color: inherit;
+}
+
+.alert-blue {
+	--alert-background-color: var(--pls-color-blue-light);
+	--alert-text-color: var(--pls-color-blue);
+}
+.alert-green {
+	--alert-background-color: var(--pls-color-green-light);
+	--alert-text-color: var(--pls-color-green);
+}
+.alert-orange {
+	--alert-background-color: var(--pls-color-orange-light);
+	--alert-text-color: var(--pls-color-orange);
+}
+.alert-red {
+	--alert-background-color: var(--pls-color-red-light); 
+	--alert-text-color: var(--pls-color-red);
+}
+ 
+ 
+ /* ------------------------------------------------------------
+ * - 7.4 - Button
+ * ------------------------------------------------------------ */
+
+.button {
+	border-radius: var(--radius);
+	background-color: var(--button-background-color);
+	color: var(--button-text-color);
+	padding-block: var(--unit-25);	
+	padding-inline: var(--unit-2);	
+	transition-duration: .2s;
+}
+	.button:hover {
+		background-color: var(--button-hover-background-color);
+		color: var(--button-hover-text-color);
+		text-decoration: none;
+		transition-duration: .2s;
+	}
+
+.button-blue {
+	--button-background-color: var(--pls-color-blue);
+	--button-text-color: var(--pls-color-whitegray);
+	--button-hover-background-color: var(--pls-color-blue-dark);
+}
+.button-red {
+	--button-background-color: var(--pls-color-red);
+	--button-text-color: var(--pls-color-whitegray);
+	--button-hover-background-color: var(--pls-color-red-dark);
+}
+.button-orange {
+	--button-background-color: var(--pls-color-orange);
+	--button-text-color: var(--pls-color-whitegray);
+	--button-hover-background-color: var(--pls-color-orange-dark);
+}
+.button-yellow {
+	--button-background-color: var(--pls-color-yellow);
+	--button-text-color: var(--pls-color-whitegray);
+	--button-hover-background-color: var(--pls-color-yellow-dark);
+}
+.button-green {
+	--button-background-color: var(--pls-color-green);
+	--button-text-color: var(--pls-color-whitegray);
+	--button-hover-background-color: var(--pls-color-green-dar);
+}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 7.5 - Progress Bars
+ * ------------------------------------------------------------ */
+ 
+ progress {
+    vertical-align: baseline;
+}
+
+.progress {
+	background-color: var(--pls-color-white);
+	border-radius: var(--radius);
+	border: 1px solid var(--light-border-color);
+	position: relative;
+	width: 100%;
+}
+
+	.progress span {
+		background-color: var(--pls-color-blue);
+		border-radius: var(--radius);
+		color: var(--pls-color-white);
+		display: block;
+		height: var(--margin-15);
+		line-height: var(--margin-15);
+		min-width: var(--margin-1);
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+	}
+	
+	.progress span[style="width: 0%;"] {
+		background: none;
+		color: var(--text-color);
+	} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 7.6 - Elements Badge & Label 
+ * ------------------------------------------------------------ */
+ 
+.badge,
+.label {
+	background-color: var(--pls-color-blue)
+	border-radius: var(--radius);
+	color: var(--pls-color-white);
+	display: inline-block;
+	margin-left: var(--unit-1);
+}
+
+.badge {
+	line-height: 1;
+	padding: var(--unit-05);
+}
+
+.menu.expanded .active a .badge {
+	background-color: var(--pls-color-white);
+	color: var(--pls-color-blue)
+}
+
+.menu.vertical .badge {
+	float: right;
+}
+
+.menu.vertical.expanded .badge {
+	margin-top: var(--unit-2);
+}
+
+.label {
+	padding-block: var(--unit-05); 
+	padding-inline: var(--unit-1);
+} 
+ 
+ 
+ /* ------------------------------------------------------------
+ * - 7.7 - Frame
+ * ------------------------------------------------------------ */
+ 
+ .frame {
+	height: 0;
+	padding-top: 56.25%;
+	position: relative;
+}
+
+	.frame embed,
+	.frame iframe,
+	.frame object,
+	.frame video {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 7.8 - Tooltip 
+ * ------------------------------------------------------------ */
+ 
+a.tooltip {
+	position: relative;
+	display: inline;
+}
+	a.tooltip span {
+		font-size: ar(--text-size-xs);		
+		line-height: 17px;  	
+		position: absolute;
+		min-width:140px;
+		color: var(--pls-color-white);
+		background: var(--pls-color-darkgray-light);
+		min-height: 30px;
+		text-align: center;
+		visibility: hidden;
+		border-radius: var(--radius);
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
+	a.tooltip span:after {
+		content: '';
+		position: absolute;
+		width: 0; height: 0;
+	}
+	a:hover.tooltip span {
+		visibility: visible;
+		opacity:1;
+		z-index: 999;
+	}
+	
+a.tooltip.tooltip-top span:after {
+	top: 100%;
+	left: 50%;
+	margin-left: -8px;
+	border-top: 8px solid var(--dark-border-color);
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+}
+a:hover.tooltip-top span {
+	bottom: 30px;
+	left: 50%;
+	margin-left: -76px;
+}
+
+a.tooltip.tooltip-right span:after {
+	top: 50%;
+	right: 100%;
+	margin-top: -8px;
+	border-right: 8px solid var(--dark-border-color);
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+}
+a:hover.tooltip-right span {
+	left: 100%;
+	top: 50%;
+	margin-top: -15px;
+	margin-left: 15px;
+}
+
+a.tooltip.tooltip-bottom span:after {
+	bottom: 100%;
+	left: 50%;
+	margin-left: -8px;
+	border-bottom: 8px solid var(--dark-border-color);
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;	
+}
+a:hover.tooltip-bottom span {
+	top: 30px;
+	left: 50%;
+	margin-left: -76px;
+}
+
+a.tooltip.tooltip-left span:after {
+	top: 50%;
+	left: 100%;
+	margin-top: -8px;
+	border-left: 8px solid var(--dark-border-color);
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+}
+a:hover.tooltip-left span {
+	right: 100%;
+	top: 50%;
+	margin-top: -15px;
+	margin-right: 15px;
+}

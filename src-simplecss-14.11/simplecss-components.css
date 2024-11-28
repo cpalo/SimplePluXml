@@ -1,0 +1,153 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleCss
+ * @subpackage   Components
+ * @version 	 13.07 
+ * @file		 assets/css/src-simplecss-13.07/simplecss-basics.css 
+ * @lastmodified 2023-07-21
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 05 - STYLES FOR OTHER COMPONENTS
+ * ------------------------------------------------------------
+ *
+ *
+ 	Table of Content :
+	------------------
+	5 - Components
+		5.1 - Buttons
+		5.2 - Alert
+	
+ */	
+
+/**
+ * A CSS component is a style or collection of styles which we can apply using classes, 
+ * often on top of a few different types of HTML elements. 
+ */ 
+ 
+	
+/* ------------------------------------------------------------
+ * - 5.1 - BUTTONS
+ * ------------------------------------------------------------ */ 
+ 
+/**
+ * Read about this:
+ * @link https://moderncss.dev/css-button-styling-guide/ 
+ * @link https://fvsch.com/styling-buttons">
+ */
+ 
+/* - 5.1.0 - Custom Properties
+ * -------------------------------------------------- */ 
+ 
+:root {
+	--button-background-color: #9555af;
+	--button-text-color: #fff;
+	--button-hover-background-color: #fff;
+	--button-hover-text-color: #9555af;
+}
+ 
+/* - 5.1.1 - Reset <button> Default Styles
+ * -------------------------------------------------- */ 
+ 
+button {
+	padding: 0;
+	border: none;
+	font: inherit;
+	color: inherit;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+
+/* - 5.1.2 - Writing a “button” CSS component
+ * -------------------------------------------------- */ 
+
+/**
+ * Now that we’ve removed default styles, let’s define our own button styles.
+ * This is what we’d like to do:
+ *     - a “button” style that can be applied to both links or buttons;
+ *     - we want to apply it selectively, because we’ll have other link and button styles in our pages.
+ */
+ 
+[class*='btn-'],
+.btn,
+.button {
+	/* default for <button>, but useful for <a> */
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+
+	/* create a small space when buttons wrap on 2 lines */
+	margin: 2px 0;
+
+	/* invisible border (will be colored on mouse-over) */
+	border: solid 2px transparent;
+	border-radius: 0.4em;
+	
+	/* size comes from text & padding (no width/height) */
+	padding: 0.5em 1em;
+	
+	/* Since padding is part of the box-model, we left it for the size section.
+	 * We apply padding using em units, which is a preference that allows the padding to proportionally resize with the applied font-size.
+     * Next, we set a min-width using the ch unit. This recommendation is a visual rhythm guardrail. 
+	 *Consider the scenario you have two side-by-side buttons with one short and one longer label, ex. "Share" and "Learn More". Without min-width, the "Share" button would be abruptly shorter than "Learn More".
+	 * The min-height is based on ensuring the button is a large enough target on touch devices to meet the WCAG 2.1 success criteria for 2.5.5 - Target Size. */
+	min-width: 10ch;
+	/* max-width: 20ch; */
+	min-height: 44px;	
+
+  /* make sure colors have enough contrast! */
+	color: var(--button-text-color);
+	background-color: var(--button-background-color);
+}
+
+
+/* - 5.1.3 - Styling hover and active states
+ * -------------------------------------------------- */ 
+ 
+	/* Old-school "push button" effect on clic + color tweak */
+	[class*='btn-']:active,
+	.btn:active,
+	.button:active {
+		transform: translateY(1px);
+		filter: saturate(150%);
+	} 
+ 
+	/* Swap colors on mouse-over */
+	[class*='btn-']:hover,
+	.btn:hover,
+	.button:hover {
+		color: var(--button-hover-text-color);
+		border-color: currentColor;
+		background-color: var(--button-hover-background-color);
+	}
+	
+	
+/* - 5.1.4 - Managing focus styles
+ * -------------------------------------------------- */ 
+ 
+	/* Define a custom focus outline that should work on any background */
+	[class*='btn-']:focus-visible,
+	.btn:focus-visible,
+	.button:focus-visible{
+		/* paint a 2px white pseudo-outline using box-shadow */
+		box-shadow: 0 0 0 2px #fff;
+		/* then paint a 2px dark pink outline and offset it to reveal one or two pixels of the pseudo-outline */
+		outline: solid 2px #d59;
+		outline-offset: 1px;
+	}
+
+	/* Disable the default outline on a focused element which doesn’t have the :focus-visible state (e.g. a button after a mouse click) */
+	[class*='btn-']:focus:not(:focus-visible),
+	.btn:focus:not(:focus-visible),
+	.button:focus:not(:focus-visible) {
+		outline-color: transparent;
+	}
+ 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 5.2 - ALERT
+ * ------------------------------------------------------------ */
+ 

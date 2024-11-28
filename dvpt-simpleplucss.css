@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/**
+ * @package 	  SimplePluCss
+ * @version 	  v14.11
+ * @site 		  https://github.com/cpalo/simpleplucss
+ *
+ * @author 		  Patrice Cahue aka cpalo
+ * @site 		  https://simplecss.fr
+ * @license 	  Coding under GNU GPL v3.0 or later
+ * @license 	  Content & others under CC-BY-NC-SA
+ * 
+ * @file		  css-simple-14.11/dvpt-simpleplucss.css
+ * @lastmodified  2024-11-28
+ *
+ *
+ * ------------------------------------------------------------
+ * ---                SIMPLE-PLUCSS v14.11                  ---   
+ * ---                (Development Version)                 ---   
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	
+	0 - Features and main changes
+	1 - Custom Properties (Variables Css)
+		1.1 - Fonts - Appareance
+		1.2 - Fonts - Sizes
+		1.3 - Helpers for spacing
+        1.4 - Line-Height & Vertical Rythm
+		1.5 - Responsive Typography
+		1.6 - Colors Pallet
+		1.7 - Functionnal assignations : Elements	
+		1.8 - Functionnal assignations : Layouts
+    2 - Simple Reset
+		2.1 - Changing Box Model
+		2.2 - Set core root defaults
+		2.3 - Set core body defaults
+		2.4 - Embedded content
+		2.5 - Other default settings	
+	3 - Typographical basics
+		3.1 - Fonts - Appareance
+		3.2 - Fonts - Sizes 
+		3.3 - Vertical Rythm, Spacing & Line-height 
+		3.4 - Typographical enhancements
+	4 - Typography : Miscellaneous
+		4.1 - Horizontal rule
+		4.2 - Blockquotes
+		4.3 - Preformat & Code
+		4.4 - Lists
+		4.5 - Links
+		4.6 - Tables
+		4.7 - Images & medias
+		4.8 - Accessibility
+	5 - Forms 
+		5.1 Reset 
+		5.2 Forms 
+		5.3 Forms Colors
+		5.4 Helpers : Buttons & inputs colors
+	6 - Navigation
+		@link dvpt-plusimplenav.css
+	7 - Others Components
+		7.1 - modal-xxxx
+		7.2 - Gallery & Images 
+		7.3 - Alert
+		7.4 - Button
+		7.5 - Progress Bars 
+		7.6 - Elements Badge & Label 
+		7.7 - Frame
+		7.8 - Tooltip
+	8- Styles for printing	
+ */
+ 
+ 
+/**
+ * Credits :
+ * ---------
+ * sanitize v13.0.0  | 2021-09-14 | CC0 1.0 Universal | https://github.com/csstools/sanitize.css 
+ * simplecss v14.11  | 2024-11-28 | GNU GPL v3.0      | https://github.com/cpalo/simplecss
+ * destyle.css v4.0.1| 2024-01-21 | MIT License	      | https://github.com/nicolas-cusan/destyle.css
+ * plucss v1.3.1     | 2020-01-05 | GPL License 	  | https://github.com/pluxml/PluCSS
+ */
+ 
+ 
+/* ------------------------------------------------------------
+ * --- FEATURES 
+ * ------------------------------------------------------------ */
+ 
+/**
+ * Valeurs Css par défaut pour les éléments html
+ * https://www.w3schools.com/cssref/css_default_values.asp
+ */
+ 
+ 
+/* 
+ * Font-size de base : : 
+ *		html : 100% au lieu de 62.5% --> 1 rem = 16 px au lieu de 10px
+ *      body : 1rem (16px) 
+ *
+ * vertical-rythm : 
+ *		margin-top, margin-bottom = leading not 1em
+ *		$leading = $line-height-base * $font-size-base (not $spacing)
+ *
+ * Convention de nommage inspirée de BEM
+ *		les classes ne sont pas nommées avec un élément html (e.g .nav) 
+ *    	ajout de "namespaces" dans les noms de classes
+ *		les éléments sont de préférence ciblés par une classe directe
+ *			(module-title au lieu de module h3)
+ *      la fonctionnalité est mise en tête comme un namespace
+ *
+ * Pour respecter l'outline html5 avec un titre sous chaque élément sectionnant 
+ *
+ * Possibilité d'une typographie responsive
+ * Utilisation des variables css (custom properties) 
+ *      permettant en particulier d'éviter les helpers liés aux couleurs des composants
+ * Utilisation des couleurs HSL
+ * Utilisation des images SVG
+ *
+ * Utilisation de Css Grid-Layout, occasionnellement Flexbox et Float
+ */ 
+ 
+ 
+/**
+ * Our Breakpoints
+ * ------------------------------------------------------------ */
+ 
+/** 
+  * Do not forget :
+  * ---------------
+  * We are in a responsive normal flow - content-first - mobile-first approach
+  * so by default smartphones in portrait mode, but breakpoints linked to devices are not priority
+  * the main breakpoints are defined first by the content, then by the devices.
+  *
+  * cf Bootstrap :
+  * --------------
+  * "Each breakpoint was chosen to comfortably hold containers whose widths are multiples of 12. 
+  * Breakpoints are also representative of a subset of common device sizes and viewport dimensions—they don’t specifically target every use case or device. 
+  * Instead, the ranges provide a strong and consistent foundation to build on for nearly any device."
+  */
+  
+  
+/** 
+    Breakpoints :		SimpleCss		 Bootstrap    	  Knacss 8.0.4		PluCss  			
+	------------		------		     -----------	  ------------		---------
+	X-Small				none< 576px		 none< 576px	  none< 576px
+	Small				sm >= 576px		 sm >= 576px	  sm >= 576px		sml <= 767px
+	Medium				md >= 768px		 md >= 768px 	 	    			med >= 768px
+	Large				lg >= 992px		 lg >= 992px	  md >= 992px       
+	Extra large			xl >= 1330px 	 xl >= 1200px	  lg <= 1330px		lrg >= 1280px
+	Extra extra large					 xxl>= 1400px	  					
+ */  
+ 
+ 
+/**
+ * Statistiques "Stat Counter" France octobre 2024
+ * @link https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/france
+ *
+ *		mobile : 54.0%
+ *      tablet :  2.2%
+ *		desktop: 43.8%
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * --- MODULAR ORGANIZATION FOR STYLE-SHEETS  
+ * ------------------------------------------------------------ */ 
+ 
+/**
+ * In production, these various style sheets can be grouped together
+ * in a single file "plusimplecss.css" and partly minified.
+ *
+ * Likewise, the numerous comments are pending
+ * writing documentation on the site linked to pluSimpleCss.
+ */ 
+
+@import url("src-simplecss-14.11/01-1-simplecss-custom-typo.css");
+@import url("src-simplecss-14.11/01-2-simplecss-custom-colors.css");
+@import url("src-simplecss-14.11/02-simplecss-reset.css");
+@import url("src-simplecss-14.11/03-simplecss-typo.css");
+@import url("src-simplecss-14.11/04-simplecss-misc.css");
+@import url("src-simplecss-14.11/05-simpleplucss-forms.css");
+@import url("src-simplecss-14.11/07-simpleplucss-components.css");
+@import url("src-simplecss-14.11/08-simplecss-others.css");
+
+
+
+

@@ -1,0 +1,423 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleCss
+ * @subpackage   Typographical miscellaneous
+ * @version 	 14.11 
+ * 
+ * @site 		 https://github.com/cpalo/SimpleCss
+ * @author 		 Patrice Cahue aka cpalo
+ * @license 	 Coding under GNU GPL v3.0 or later
+ * 
+ * @file		 css/src-simplecss-14.11/03-simplecss-misc.css 
+ * @lastmodified 2024-11-28
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 04 - TYPOGRAPHY : MISCELLANEOUS 
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	4 - Typographical basics
+		4.1 - Horizontal rule
+		4.2 - Blockquotes
+		4.3 - Preformat & Code
+		4.4 - Lists
+		4.5 - Links & Hyperlinks 
+		4.6 - Tables 
+		4.7 - Medias
+		4.8 - Accessibility 
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.1 -  Horizontal rule 
+ * ------------------------------------------------------------ */
+ 
+/* Par defaut  width: 100%,  height: 2px; 
+    border: 0 --> ne s'affiche pas */
+	
+/*
+ NOTE: 
+  - When using border property, you control <hr< thickness with the border-width property.
+  - When not using border property, you control hr thickness with height property.
+ */ 
+
+hr { 
+	--hr-size: 2px;
+    height: var(--hr-size);
+    border: 0;
+	border-top: var(--hr-size) solid;
+	border-color: var(--medium-border-color);
+	margin-top: calc(var(--margin-1) + ((var(--margin-1) - var(--hr-size)) / 2));
+    margin-bottom: calc(var(--margin-1) + ((var(--margin-1) - var(--hr-size)) / 2));
+	margin-inline: 5%;
+	
+	overflow: visible;
+	text-align: center;
+}
+
+hr.hr-has-content::after {   
+    content: 'CONTENT';
+	display: inline-block;
+	height: var(--margin-1);
+	font-size: 24px;
+	vertical-align: middle;
+    padding: 0 var(--unit-4);
+    position: relative;
+    /*top: calc((var(--spacing-1) * -1) + 8px);*/
+	top: -18px;
+	background: #fff;
+} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.2 - Blockquotes 
+ * ------------------------------------------------------------ */
+ 
+ /* Par défaut blockquote : 
+ * 		margin-left: 40px;  i.e --spacing-25
+ * 		margin-right: 40px;
+ */
+ 
+blockquote {
+	margin-inline: var(--spacing-25);
+	border-left: var(--unit-1) solid;
+	border-color: var(--blockquote-border-color);
+	padding-left: var(--unit-4);
+	background-color: var(--blockquote-background-color); 
+	color: var(--light-text-color);
+	font-size: var(--text-size-lg);
+	line-height: var(--text-line-height);
+	font-style: italic;	 
+}
+ 
+	blockquote cite,
+	blockquote small {
+		display: block;
+		font-size: var(--text-size-sm);
+		font-style: normal;
+	}
+
+		blockquote cite::before,
+		blockquote small::before {
+			content: "—\00A0";
+		}
+		
+	blockquote > :last-child {
+	/* margin-bottom: 0.5em; */
+	}	 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.3 - Preformat & Code 
+ * ------------------------------------------------------------ */
+ 
+pre {
+	overflow: auto;
+	padding-block: var(--margin-1);
+	padding-inline: var(--spacing-1);
+	max-width: 100%;
+	border: 1px solid var(--pre-border-color);
+	background: var(--pre-background-color);
+	font-size: var(--text-size-sm);
+} 
+
+code {
+	display: inline-block;
+	margin-left: var(--spacing-05);
+	margin-right: var(--spacing-05);
+	vertical-align: middle;
+	border: 1px solid var(--code-border-color);
+    border-radius: var(--radius);
+	padding: var(--unit-1);
+	background: var(--code-background-color);
+	color: var(--code-color);
+    font-weight: 400;
+    font-size: var(--text-size-sm);	
+    word-wrap: break-word;		
+}
+
+pre code {
+	display: block;
+	padding: 0;
+	background: inherit;
+	border-radius: 0;
+	color: var(--pre-code-color);
+	tab-size: 2;
+	word-wrap: normal;
+} 
+
+
+/* ------------------------------------------------------------
+ * - 4.4 - Lists 
+ * ------------------------------------------------------------ */
+ 
+/* Par défaut lists : 
+ * 		ol, ul { padding-left: 40px; padding-right: 40px; }
+ * 		dd { margin-left: 40px; }
+ */ 
+ 
+ul,
+ol {
+	padding-inline: var(--spacing-25);
+}
+
+	li > ul,
+	li > ol {
+		margin-bottom: 0;
+	}
+
+dt {
+	font-weight: 700;
+}
+
+dd {
+	margin-left: var(--spacing-25);
+}
+
+nav ol,
+nav ul {	
+	padding-left: 0;
+	padding-right: 0;
+	list-style: none;
+}
+
+/* --- Exemple de ligne liste inline --- */
+
+.list-inline {
+	margin-block: var(--margin-1);
+	margin-inline: 0;
+	padding-left: 0;
+}
+	.list-inline li {
+		display: inline-block;
+		list-style-type: none;
+		margin-left: var(--unit-1);	
+	}
+	.list-inline li:first-child {
+		margin-left: 0;
+	}
+
+	.list-inline.has-sep li:after {
+		content: " | ";
+	}
+	.list-inline.has-sep li:Last-child:after {
+		content: '';
+	}
+
+	.list-inline.has-dash li:after {
+		content: " - ";
+	}
+	.list-inline.has-dash li:Last-child:after {
+		content: '';
+	}
+
+	.list-inline.has-comma li:after {
+		content: ", ";
+	}
+	.list-inline.has-comma li:Last-child:after {
+		content: ". ";
+	} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.5 - Links & Hyperlinks 
+ * ------------------------------------------------------------ */ 
+ 
+/**
+ * <a:link> only affects links that have a <href> attribute basically (if a:visited, a:hover or a:active does not apply)... 
+ * The main case where I've noticed a difference is that a:link doesn't affect Named Anchors whereas a will. 
+ * Also, a is the default style if none of the other pseudo classes are defiend.
+ *
+ * @see http://romy.tetue.net/souligner-les-liens-mais-pas-tous
+ * On garde le comportement par défaut
+ * mais on ne souhaite conserver ce soulignement par defaut que dans le texte courant 
+ */
+ 
+a {
+	background: transparent;
+	color: var(--link-color);
+	text-decoration: none;
+	/* color: inherit; */
+	/* text-decoration: underline; recommandé par défaut */
+}
+
+a:link,
+a:visited {
+	color: var(--link-color);
+}
+
+a:focus,
+a:hover,
+a:active {
+	color: var(--link-hover-color);
+	text-decoration: underline;
+}
+
+a:focus {
+	outline: thin dotted;
+}
+
+a:hover,
+a:active {
+	outline: 0;
+}
+
+/* --- Liens dans des titres --- */
+
+h1 a,
+h2 a,
+h3 a,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h1 a:active,
+h2 a:active,
+h3 a:active {
+	color: var(--title-color);
+	text-decoration: none;
+}
+ 
+/* Images with link */
+
+a img {
+	transition: opacity 0.2s;
+}
+
+a:hover img {
+	opacity: 0.7;
+}
+
+a:focus img {
+	opacity: 0.7;
+	outline: 2px dashed var(--media-link-focus-outline-color);
+}
+
+a:active img {
+	opacity: 1;
+} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.6 - Tables  
+ * ------------------------------------------------------------ */
+ 
+table {
+	table-layout: auto;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;	
+}
+.table-scrollable {
+	overflow: auto;
+} 
+
+	tr {
+		border-bottom: 1px solid;
+		border-color: var(--table-tr-border-color);
+		transition-duration: .2s;
+	}
+	tr:hover {
+		background-color: var(--table-tr-hover-background-color);
+		transition-duration: .2s;
+	}
+
+		th,
+		td {
+			padding-block: var(--leading-05);
+			padding-inline: var(--unit-2);
+			border: 1px solid;
+			border-color: var(--table-border-color, var(--light-border-color));
+		}
+
+		th {
+			font-weight: 400;
+			text-align: initial;
+			background: var(--table-background-color, var(--light-background-color));
+		}
+
+	tfoot td {
+		background: var(--light-background-color);
+	} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.7 - Medias 
+ * ------------------------------------------------------------ */
+ 
+/* Par défaut figure : 
+	margin-left: 40px;
+	margin-right: 40px;
+*/
+
+figure {
+	margin-inline:  var(--spacing-25);
+}
+
+figcaption {
+	display: block;
+	width: auto;
+	max-height: 100%;
+	overflow: auto;
+	margin-left: auto;
+	margin-right: auto;
+	padding-block: var(--leading-05);
+	padding-inline: var(--unit-2);
+	background: var(--figure-caption-background-color);
+	color: var(--figure-caption-color);	
+	font-size: var(--text-size-sm);
+	font-weight: 600;	
+	text-align: center;	
+}
+/*
+img {
+	border: 0;
+	height: auto;
+	max-width: 100%;
+}
+*/
+.img--circle {
+	border-radius: 50%;
+}
+
+.img--rounded {
+	border-radius: var(--radius);	
+}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 4.8 - Accessibility
+ * ------------------------------------------------------------ */
+ 
+.screen-reader-text {
+	position: absolute !important;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	width: 1px;
+	height: 1px;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+	top: 5px;
+	left: 5px;
+	z-index: 100000; /* Above WP toolbar. */
+	display: block;
+	clip: auto !important;
+	padding: 15px 23px 14px;
+	width: auto;
+	height: auto;
+	border-radius: 3px;
+	background-color: #f1f1f1;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	color: #21759b;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 14px;
+	font-size: 0.875rem;
+	line-height: normal;
+}

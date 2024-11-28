@@ -1,0 +1,213 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleCss
+ * @subpackage   Reset & Default Settings
+ * @version 	 14.11 
+ * @file		 css/src-simplecss-14.11/02-simplecss-reset.css 
+ * @lastmodified 2024-11-28
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 02 - RESET & DEFAULT SETTINGS 
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	2 - Reset & Default Settings
+		2.1 - Changing Box Model
+		2.2 - Set core root defaults
+		2.3 - Set core body defaults
+		2.4 - Embedded content
+		2.5 - Other default settings
+ */
+ 
+ 
+/**
+ * ------------------------------------------------------------
+ * - 02 - SIMPLE NORMALIZE 
+ * ------------------------------------------------------------
+ */
+ 
+/**
+ * --- 2.1 - Universal Box Sizing with Inheritance 
+ * ------------------------------------------------------------
+ */
+ 
+/**
+ * Resets the box-model so that width and height are not affected by border or padding
+ * Use box-sizing: border-box to include the width and height of padding and border when calculating the element's width and height. 
+ * Use box-sizing: inherit to pass down the box-sizing property from parent to child elements.
+ */
+ 
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit; 
+}
+
+
+/** 
+ * --- 2.2 - Set core root defaults 
+ * ------------------------------------------------------------
+ */
+ 
+/* Reset sur l’élément html et non sur l’élément body. 
+ * --->   1 rem = 16px (100% de 16px )
+ *        ( si 62.5% --> 1rem = 10px ) */
+  
+/* Allow percentage-based heights in the application
+ * Breaks words to prevent overflow in all browsers. */
+ 
+html {
+	font-size: 100%; 
+	height: 100%;
+	cursor: default; 		
+	tab-size: 4;  
+	overflow-break: break-word; 
+}
+ 
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+	/* Prevent adjustments of font size after orientation changes in iOS. */
+	
+	@media (max-device-width:768px) and (orientation: landscape) {
+		html {
+			-webkit-text-size-adjust: 100%;
+		}
+	}
+	
+	
+/** 
+ * --- 2.3 - Set core body defaults
+ * ------------------------------------------------------------
+ */
+ 
+/* It’s useful for the <body> to fill the viewport, even when empty. */
+
+body { 	
+	margin: 0;	
+	height: 100%;
+	min-height: 100vh; 				
+    scroll-behavior: smooth;
+}
+
+
+/** 
+ * --- 2.4 - Make embedded elements easier to work with 
+ * ------------------------------------------------------------ 
+ */
+ 
+/** 
+   For images to not be able to exceed their container 
+   Block display is usually what we want
+   Responsive by default : for images to not be able to exceed their container
+ */
+ 
+img, 
+svg, 
+video, 
+canvas, 
+audio, 
+iframe, 
+embed, 
+object {
+	display: block; 
+	max-width: 100%;
+}
+
+/**
+  Maintain intrinsic aspect ratios when `max-width` is applied.
+  `iframe`, `embed`, and `object` are also embedded,
+  but have no intrinsic ratio,
+  so their `height` needs to be set explicitly.
+ */
+ 
+img, 
+svg, 
+video, 
+canvas {
+	height: auto;
+}
+
+/**
+  There is no good reason elements default to 300px,
+  and audio files are unlikely to come with a width attribute.
+*/
+
+audio { 
+	width: 100%; 
+}
+
+iframe {
+  border: 0;
+}
+ 
+ 
+/** 
+ * --- 2.5 - Other default settings 
+ * ------------------------------------------------------------
+ */
+
+/* Avoid min-width: auto on flex and grid children (/* ajout le 24/10/2020 @see Knaccs) */
+
+*,
+::before,
+::after {
+	min-width: 0;  	
+}
+
+/* Backgrounds do not repeat by default */
+
+*,
+::before,
+::after {
+	background-repeat: no-repeat; 
+}
+
+/* Pseudo-elements inherit text decoration and vertical alignment */
+
+::before,
+::after {
+	text-decoration: inherit; 
+	vertical-align: inherit;
+}
+
+/* Inherit fonts for inputs and buttons */
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Removes spacing between cells in tables */
+
+table {
+    border-collapse: collapse;
+}
+
+
+/* Interactive Elements
+   display: block, l'icône triangulaire qui révèle le contenu sera masquée. */
+
+summary {
+	display: list-item;
+}
+
+details > summary:first-of-type {
+	display: list-item;
+}
+
+details summary > * {
+	display: inline;
+}
+ 

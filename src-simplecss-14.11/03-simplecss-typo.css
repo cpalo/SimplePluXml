@@ -1,0 +1,230 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleCss
+ * @subpackage   Typographical basics
+ * @version 	 14.11
+ * 
+ * @site 		 https://github.com/cpalo/SimpleCss
+ * @author 		 Patrice Cahue aka cpalo
+ * @license 	 Coding under GNU GPL v3.0 or later
+ * 
+ * @file		 css/src-simplecss-14.11/03-simplecss-typo.css 
+ * @lastmodified 2024-11-28
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 03 - TYPOGRAPHICAL BASICS - BASE 1rem = 16px 
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	3 - Typographical basics
+		3.1 - Fonts - Appareance
+		3.2 - Fonts - Sizes 
+		3.3 - Vertical Rythm, Spacing & Line-height 
+		3.4 - Typographical enhancements
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * -  3.1 - Fonts - Appareance 
+ * ------------------------------------------------------------ */
+ 
+body {	
+	color: var(--text-color, hsl(0, 0%, 25%));
+	font-family: var(--text-font, system-ui);
+}
+
+code,
+kbd,
+samp {
+	font-family: var(--code-font, monospace); 
+}
+
+pre {
+	font-family: var(--pre-font, monospace); 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--title-color, inherit);	
+	font-family: var(--title-font, inherit);	
+	font-weight: var(--title-font-weight, 500);
+	text-transform: var(--title-text-transform, none);
+}
+	@media (max-device-width: 768px) {	
+		h1, h2, h3, h4 { 
+			letter-spacing: -1px;
+		} 
+	}
+
+/* Each sectioning element has a title, but not necessarily visible  */
+ h1.no-visible-avoid-untitled,
+ h2.no-visible-avoid-untitled,
+ h3.no-visible-avoid-untitled, 
+ h4.no-visible-avoid-untitled {
+	display: none; 
+} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 3.2 - Fonts - Sizes 
+ * ------------------------------------------------------------ */
+ 
+ body {
+	font-size: var(--text-size, 1rem);	
+}
+
+pre {
+	font-size: var(--pre-text-size, inherit);
+}  
+  
+code,
+kbd,
+samp {
+	font-size: var(--text-size-sm, .9375rem);
+}  
+
+/** 
+ * h1 n'est jamais visible (i.e en-tete cachée du document) 
+ *  	--> hierarchie réelle à partir du h2 
+ * En fait le h2 n'est pratiquement jamais visible car utilisé essentiellement
+ * pour respecter l'outline html5 avec un titre sous chaque élément sectionnant.
+ * Dans la pratique, seuls les h4, h5 et h6 seront utilisés pour saisir du texte
+ * puisque les h1, h2 et h3 auront été "automatiquement " utlisés dans la construction du thème.
+ */
+ 
+/**
+ * In html5 era h1 has wider semantic usage
+ * and it's encouraged both for SEO and for accessibility 
+ * to use it as the first heading of parent section.
+ */
+   
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
+h4 { font-size: var(--h4-size); }
+h5 { font-size: var(--h5-size); }
+h6 { font-size: var(--h6-size); }  
+
+
+/* ------------------------------------------------------------
+ * - 3.3 - Vertical Rythm, Spacing & Line-height 
+ * ------------------------------------------------------------ */ 
+ 
+body {
+	line-height: var(--text-line-height);	
+} 
+ 
+/* The margin-bottom is the same size as our line-height. */ 
+h1, h2, h3, h4, h5, h6,
+hgroup,
+p,
+hr,
+blockquote, 
+pre,
+figure, 
+ul, ol, dl, dd,
+table,
+form, 
+details {
+    margin-top: 0;
+	margin-bottom: var(--margin-1);	
+}
+
+/* avoid bottom margins on last content element */  
+p:last-child,
+blockquote:last-child,
+pre:last-child,
+figure:last-child,
+ul:last-child,
+ol:last-child,
+dl:last-child,
+table:last-child,
+form:last-child {
+	margin-bottom: 0;
+}
+
+h2 { line-height: var(--h2-line-height, 1.35); }
+h3 { line-height: var(--h3-line-height, 1.35); }
+h4 { line-height: var(--h4-line-height, 1.35); }
+h5 { line-height: var(--h5-line-height, 1.35); }
+h6 { line-height: var(--h6-line-height, 1.35); }  
+
+h2 { padding-top: var(--h2-padding-top); }
+h3 { padding-top: var(--h3-padding-top); }
+h4 { padding-top: var(--h4-padding-top); }
+h5 { padding-top: var(--h5-padding-top); }
+h6 { padding-top: var(--h6-padding-top); } 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 3.4 - Typographical enhancements 
+ * ------------------------------------------------------------ */
+
+abbr {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+abbr[title] {
+	text-decoration: underline;
+	text-decoration: underline dotted;
+	cursor: help; 
+}
+
+address {
+	font-style: normal;
+	line-height: inherit;
+	margin-top: 0;
+	margin-bottom: var(--margin-1);
+}
+
+b,
+strong {
+	font-weight: bolder;   
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+mark,
+ins {
+	background: var(--mark-background-color); 
+	text-decoration: none;
+}
+
+small {	
+	font-size: 80%;	
+	font-size: var(--text-size-xs, .8125rem);
+	line-height: var(--text-line-height); 
+} 
+
+/* Par defaut :
+	vertical-align: sub;
+	vertical-align: sup;
+	font-size: smaller;
+*/
+sub,
+sup {
+	font-size: 75%;			
+	position: relative;
+	vertical-align: baseline;
+}
+
+sub {
+	bottom: -0.25em;		
+}
+
+sup {
+	top: -0.5em;			
+}

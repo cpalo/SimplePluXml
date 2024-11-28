@@ -1,0 +1,222 @@
+/**
+ * @package 	 simplePluCss
+ * @subpackage   Forms
+ * @version 	 14.11
+ * 
+ * @file		 css/src-simpleplucss-14-11/05-simpleplucss-forms.css 
+ * @lastmodified 2024-11-28 
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 05 - FORMS 
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	5 - Forms
+		5.1 Reset 
+		5.2 Default settings by PluCss 
+		5.3 Forms Colors
+		5.4 Helpers : Buttons & inputs colors 		
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 01 - Reset 
+ * ------------------------------------------------------------ */
+ 
+fieldset {
+	margin-bottom: var(--margin-1);
+	border: none; 
+	padding: 0;
+}
+
+legend {
+	margin-bottom: var(--margin-1);
+	padding: 0;
+}
+
+label {
+	display: block;
+	padding-bottom: var(--unit-1);
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	height: var(--spacing-2);	
+	margin: 0;
+	outline: none;
+	padding-inline: var(--unit-1);
+	width: 100%;
+}
+
+button,
+input {
+	overflow: visible;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+	border-color: transparent;
+	cursor: pointer;
+	padding-inline: var(--unit-2);
+	width: auto;
+}
+
+textarea {
+	height: auto;
+	overflow: auto;
+}
+
+select {
+	padding-left: var(--unit-05);
+	padding-right: 0;
+}
+optgroup {
+	font-weight: bold;
+	font-style: normal;
+}
+
+[type="checkbox"],
+[type="radio"] {
+	height: auto;
+	padding: 0;
+	width: auto;
+}
+
+[type="file"] {
+	height: auto;
+	padding: 0;
+}
+
+[disabled]:hover {
+	cursor: not-allowed;
+}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 5.2 Default settings by PluCss
+ * ------------------------------------------------------------ */
+ 
+ form .col {
+	margin-bottom: var(--margin-1);
+}
+form.inline-form button,
+form.inline-form input,
+form.inline-form label,
+form.inline-form select,
+form.inline-form textarea {
+	display: inline-block;
+	width: auto;
+}
+
+form .col.label-centered {
+	margin-bottom: 0;
+}
+form .label-centered label {
+	padding-top: var(--unit-1)
+}
+
+button,
+input,
+select,
+textarea {
+	border: 1px solid var(--input-border-color);  /* --light-border-color */
+	border-radius: var(--radius);
+	transition-duration: .2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border: 1px solid var(--input-focus-border-color); /* --pls-color-blue */
+	transition-duration: .2s;
+}
+
+[type="file"] {
+	border: none;
+}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 5.3 Forms Colors
+ * ------------------------------------------------------------ */
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid var(--input-border-color);  		/* --light-border-color */
+	background-color: var(--input-background-color); 	/* --pls-color-gray */
+	color: var(--input-text-color);						/* --pls-color-white */
+	transition-duration: .2s;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	background-color: var(--input-hover-background-color); /* --pls-color-darkgray-light */
+	transition-duration: .2s;
+}
+
+button[disabled],
+input[disabled],
+select[disabled],
+textarea[disabled],
+button[disabled]:hover,
+input[disabled]:hover,
+select[disabled]:hover,
+textarea[disabled]:hover {
+	background-color: var(--elts-form-disabled-background-color); /* --pls-color-lightgray */
+	color: var(--elts-form-disabled-color); 					  /* --pls-color-gray-light */
+}
+
+ 
+/* ------------------------------------------------------------
+ * - 5.4 Helpers : Buttons & inputs colors
+ * ------------------------------------------------------------ */
+ 
+ .input-blue {
+	--input-text-color: var(--pls-color-whitegray);				 
+	--input-background-color: var(--pls-color-blue); 			 
+	--input-background-color-hover:var(--pls-color-blue-dark); 	
+} 
+
+.input-red {
+	--input-text-color: var(--pls-color-whitegray);				 
+	--input-background-color: var(--pls-color-red);				 
+	--input-background-color: var(--pls-color-red-dark); 		 
+}
+
+.input-orange {
+	--input-text-color: var(--pls-color-whitegray);				  
+	--input-background-color: var(--pls-color-orange); 			  
+	--input-background-color-hover: var(--pls-color-orange-dark);
+}
+
+.input-yellow {
+	--input-text-color: var(--pls-color-whitegray);				   
+	--input-background-color: var(--pls-color-yellow);			   
+	--input-background-color-hover: var(--pls-color-yellow-dark); 
+}
+
+.input-green {
+	--input-text-color: var(--pls-color-whitegray);				  
+	--input-background-color: var(--pls-color-green);			  
+	--input-background-color-hover: var(--pls-color-green-dark);	
+}
+ 
+ 
