@@ -1,0 +1,223 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleGrid
+ * @subpackage   Base
+ * @version 	 14.11 
+ * @file		 css-simple/src-simplegrid-14.11/01-simplegrid-base.css 
+ * @lastmodified 2024-11-29
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 01 - SIMPLEGRID - BASE
+ * ------------------------------------------------------------
+ *
+ * Table of Content 
+	------------------
+	0 - 	
+		01 - Custom Properties
+		02 - A global grid on the body	
+		03 - Grid Elements
+*/
+ 
+ 
+/* ------------------------------------------------------------
+ * - 01 - Custom Properties
+ * ------------------------------------------------------------ */
+ 
+/**
+ * Reminder
+ * --------
+ * Variables assigned to spaces are defined in the "simplecss-custom.css" file.
+ *     --unit-1:     4px; (Space inside elements)
+ *	   --spacing-1: 16px; (Horizontal spacing (fixed))
+ *	   --leading-1: 24px/28px; (Vertical variable spacing)
+ *                  with rem i.e $text-size * $line-height
+ * Multipliers are used e.g :
+ *		--unit-05 --> 0.5 -->  2px
+ *      --unit-2  --> 2   -->  8px
+ *      --unit-25 --> 2.5 --> 10px
+ */
+ 
+:root {
+	
+	--body-padding-block:  var(--margin-0, 0px);
+	--body-padding-inline: var(--spacing-0, 0px);
+} 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 02 - A global grid on the body
+ * ------------------------------------------------------------ */
+ 
+body {
+	padding-block: var(--body-padding-block, 0px);
+	padding-inline: var(--body-padding-inline, 0px);
+	
+	/* 100vw also includes the scrollbar, unfortunately, so hide it 
+	( that does slice off a very small part of the .alignfull block ) */
+	overflow-x: hidden;	
+}
+
+	.has-sticky-footer .grid-body {
+		min-height: calc(100vh - 2 * var(--body-padding-block));			
+	}
+	
+	.grid-body {	
+		/* nb-rows : nombre de lignes avant <main> afin d'avoir un footer to bottom :
+		   top-bar, site-header, site-branding, site-nav, site-hero .... */
+		--nb-rows: 2;
+		/*grid-template-rows: repeat(var(--nb-rows), min-content)[main-start] 1fr min-content;*/
+		grid-template-rows: repeat(var(--nb-rows), min-content)[main-start] 1fr;
+	}	
+	
+	.has-pinning-header-footer .grid-body > header,
+	.has-pinning-header-footer .grid-body > footer {
+		/*height: 70px;*/
+	}
+
+	.has-pinning-header-footer .grid-body .site-content {
+		/* height: calc( 100% - 0px ); */
+		/* height: calc( 100% - 140px ); */
+		/*overflow-y: scroll;*/
+	}
+ 
+ 
+/* ------------------------------------------------------------
+ * - 03 - Grid Container : Grid-Body
+ * ------------------------------------------------------------ */
+
+/**
+ * Grid Containers : Blockgroups
+ *  -----------------------------  
+ * .grid-body applied indirectly to the body, via the "traditional" .page or .site wrapper
+ * .grid-container applied inside a blockgroup
+ * .grid-content applied inside a single article (single/article mode, page/static mode)
+ * .grid-body-12col and .grid-cols- in case the "traditional" grid system is used.
+ */   
+ 
+/**
+  * The default grid has several external columns ("external")
+  * thus creating external margins ("wide" and "full") offering the possibility of
+  * - center content
+  * - to set a maximum width for the content.
+  * You can also define a breakpoint from which this grid applies.
+  */
+  
+/**
+ * Set a maximum content width 
+ * ---------------------------------------
+ * The difficulty is to define the maximum width of the columns because the viewport varies;
+ * If max < min, max is ignored and minmax(min,max) corresponds to min. 
+ * e.g in minmax(1fr, value) if value < 1fr value is not taken into account.
+ *
+ * We calculate the remaining width for the outer margins (Full-Width)
+ * Calculation for equal columns:
+ * (100vw - $widthContent - ($numberGuttersExternal * $widthGutter) -$scrollBar) / $numberColumnsExternal
+ * But we can play with unequal widths by distributing the 100vw unequally.
+ * 100% instead of 100vw (and therefore no -$scrollbar) when the grid is in a container.
+ */
+  
+/** 
+ * Attention :
+ * ----------
+ * Viewport width must be greater than what is removed
+ * example: 1200px + (4 * 24px) + 16px (scrollbar) ---> minwidth = 1312px 
+ * width of one of the 4 external margins: calc(25vw - 300px - 24px - 4px)  
+ */
+
+/**
+ * width-wide must be larger than max-width-wide + 2 gutters
+ * ---> this is what determines the choice of the breakpoint.
+ * width-wide = 90% of 1600px = 1440px > 1400px (max-width-wide)
+ */
+
+.grid-body, 
+.grid-body--boxed,
+.grid-body--fullwidth {	
+	display: grid;	
+	
+	--gutter-col: min(2%, 24px);  			/* column-gap */
+	--gutter-row: var(--margin-1, 1.5rem); 	/* row-gap */
+	
+	column-gap: var(--gutter-col);
+	row-gap: var(--gutter-row);
+	
+	grid-template-columns:
+		/* Left outer margin */
+		[full-start] 
+			var(--margin-full)	
+		/* Content area */
+			var(--content)
+		/* Right outer margins */
+			var(--margin-full)
+		[full-end];
+		
+	/* outer margin width */
+	--grid-padding: 24px;
+	--margin-full: minmax(var(--grid-padding), 1fr);	
+	
+	/* layout for content between outer margins */
+	--content-max-width: 900px;
+	--content:
+		[wide-start content-start left-start left-end middle-start]
+			min(calc(100% - 2 * var(--grid-padding) - 2 * var(--gutter-col)), var(--content-max-width))			
+		[middle-end right-start right-end content-end wide-end];
+}
+
+@media (min-width: 992px) {
+	.grid-body, 
+	.grid-body--boxed,
+	.grid-body--fullwidth {
+		grid-template-columns:		
+			/* Left outer margin */
+			[full-start] 
+				var(--margin-full)	
+			/* Content area */
+			[wide-start] 
+				var(--wide-side)
+				var(--content)
+				var(--wide-side)
+			[wide-end]
+			/* Right outer margins */
+				var(--margin-full)
+			[full-end];
+		
+		--wide-max-width: 1400px;
+		--wide-side: min(15%, calc((var(--wide-max-width) - var(--content-max-width)) / 2));
+		
+		--content:
+		[content-start left-start left-end middle-start]
+			min(calc(70% - 2 * var(--grid-padding) - 4 * var(--gutter-col)), var(--content-max-width))
+		[middle-end right-start right-end content-end];	
+		/*  (1400px - 900px) /2 = 250px i.e 18% de 1330px*/
+	}		
+}
+
+
+/* ------------------------------------------------------------
+ * - 04 - Grid Elements/Containers : Blockgroups
+ * ------------------------------------------------------------ */ 
+ 
+ /**
+ * By default {display: block;} make 100% of their parent.
+ * Likewise the content of a grid-item is 100% of the item.
+ * If an item is full-width --> grid-column: 1 / -1;
+ *
+ * By default, we have chosen that the children of a grid-container make 100% of its container.
+ */ 
+ 
+.grid-body > *,
+.is-subgrid > *, 
+.grid-body--boxed > *,
+.grid-body--fullwidth > * {	
+	grid-column: 1 / -1;
+}
+
+.is-subgrid {
+	display: grid;
+	grid-template-columns: subgrid;
+	align-content: start;
+	row-gap: var(--gutter-row, 24px);
+}
+

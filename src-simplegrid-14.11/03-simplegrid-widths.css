@@ -1,0 +1,162 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleGrid
+ * @subpackage   Widths & Alignments
+ * @version 	 14.11 
+ * @file		 css-simple/src-simplegrid-14.11/03-simplegrid-widths.css 
+ * @lastmodified 2024-11-29
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 03 - SIMPLEGRID - WIDTHS
+ * ------------------------------------------------------------
+ *
+ * Table of Content 
+	------------------
+	
+*/
+
+
+
+
+
+
+/* ------------------------------------------------------------
+ * - 03 - Helpers for setting the widths & alignments
+ * ------------------------------------------------------------ */
+ 
+	/**
+	 * Basées sur la line-length maxi des paragraphes
+	 * ----------------------------------------------
+	 *  75 cpl * 16px * 0.5 = 600px
+	 *  75 car * 17px * 0.5 = 638px 
+	 *  90 cpl * 16px * 0.5 = 720px
+	 *  90 cpl * 17px * 0.5 = 765px
+	 *  90 cpl * 18px * 0.5 = 810px
+	 */ 
+ 
+ 
+ /**
+ * The content block is centered to avoid stretching the content:
+ * by default it is the internal block (.inner-) or (grid-) which is limited and centered
+ *
+ * this class, depending on the desired layout, can also be applied to:
+ * - the parent of the grid-item ("bg-" or "blockgroup")
+ * - and not (the most common) on the inner block of the grid-item "grid-" or "inner-"
+ * - or even on the global container (".page", ".grid-body")
+ *
+ * Attention :
+ * ----------
+ * These classes are not used to center the child items of a grid-container.
+ * They are mainly used to center and size the grid-container.
+ */
+ 
+/**
+ * FULL BLEED :
+ * Add this class to an element to make it fill the width of the screen 
+ */ 
+
+.fullbleed {
+	width: 100vw;
+	margin-left: calc(50% - 50vw); 
+}
+
+/**
+ * FULL PAGE :
+ * Only for direct childs of site grid-body
+   Different from full-bleed when the body has padding-inline
+ */
+
+.fullpage {
+	width: calc(100vw - 2 * var(--body-padding-inline) - 16px);
+	margin-left: calc(50% - 50vw + var(--body-padding-inline) + 8px);
+}
+/*
+.fullwidth {
+	grid-column: full;
+	display: grid;
+	grid-template-columns: subgrid;
+	row-gap: 24px;
+}
+	.fullwidth-center {
+		grid-column: full;
+	}
+	.fullwidth-left {
+		grid-column: full-start / content-end;
+	}
+	.fullwidth-right {
+		grid-column: content-start / full-end;
+	}
+*/	
+
+/* ------------------------------------------------------------
+ * - 02 - Styles for alignments
+ * ------------------------------------------------------------ */
+ 
+:root { 
+
+	/* widths used by content */
+	/*--max-margin-wide: 80px;	     (1440px - 1280px)/2 */
+	/*--max-width-wide:   90rem;	 1440px */
+	/*--max-width-content:80rem;	  1280px */
+	/*--max-width-main:   40rem;	   640px */
+	/*--width-margin-wide: 86vw;
+	--width-margin-wide: 5vw;
+	--width-content:    76vw;*/
+}
+
+.fullwidth,
+.full-width {
+	width: 100%;
+}
+
+.wide-width {
+	width: calc(86vw + 16px);
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.content-width {
+	width: var(--width-content);
+	max-width: var(--max-width-content);	
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.main-width {
+	max-width: var(--max-width-main);	
+	margin-left: auto;
+	margin-right: auto;	
+}
+ 
+	 
+/**
+  * Reminder :
+  * ----------
+  * Direct child elements of a container-grid can no longer be floated
+  */
+ 
+.align-left,
+.float-left {
+	width: 40%;
+	margin-right: 1rem;
+	float: left;
+}
+
+.align-right,
+.float-right {
+	width: 40%;
+	margin-left: 1rem;
+	float: right;
+}
+
+.align-center,
+.float-center {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+

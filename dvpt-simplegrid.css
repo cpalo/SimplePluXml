@@ -1,0 +1,73 @@
+@charset "UTF-8"; 
+
+/**
+ * @package 	  SimpleCss
+ * @subpackage    SimpleCss-Grid
+ * @version 	  14.11
+ * @site 		  https://github.com/cpalo/SimpleCss
+ *
+ * @author 		  Patrice Cahue aka cpalo
+ * @site 		  https://simplecss.fr
+ * @license 	  Coding under GNU GPL v3.0 or later
+ * @license 	  Content & others under CC-BY-NC-SA
+ *
+ * @file		  css-14.11/dvpt-simplegrid.css 
+ * @lastmodified  2024-11-29
+ *
+ *
+ * ------------------------------------------------------------
+ * ---                  SIMPLECSS v14.11                    ---
+ * ---           SIMPLE-GRID (Development Version)          ---  
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	1 - Custom Properties
+	2 - A global grid on the body
+	3 - Helpers for setting the widths & alignments	
+	4 - Grid Elements
+	5 - Grid-Items : Helpers for alignments on the grids
+		6 - Styles for alignments
+		7 - Grid-Content : Grid-Article
+ */ 
+ 
+ 
+/* ------------------------------------------------------------
+ * - 00 - Credits and thanks
+ * ------------------------------------------------------------ */
+ 
+/**
+ * 2023-12-13 Ibadehin Mojeed
+ * https://blog.logrocket.com/using-css-subgrid-design-advanced-layouts/
+ * 
+ * Ekaterina Vujasinović
+ * https://www.ditdot.hr/en/css-subgrid-how-to-build-complex-layouts-in-a-simple-way
+ *
+ * Kevin Powell 2023-12 Using grid instead of containers/wrappers
+ * https://codepen.io/kevinpowell/pen/ExrZrrw
+ *
+ * Bryan Robinson 2019-11-15
+ * https://bryanlrobinson.com/blog/use-css-subgrid-laying-out-full-width-article-stripes
+ */
+ 
+ 
+/* ------------------------------------------------------------
+ * --- MODULAR ORGANIZATION FOR STYLE-SHEETS  
+ * ------------------------------------------------------------ */ 
+ 
+/**
+ * In production, these various style sheets can be grouped together
+ * in a single file "plusimplecss.css" and partly minified.
+ *
+ * Likewise, the numerous comments are pending
+ * writing documentation on the site linked to pluSimpleCss.
+ */ 
+ 
+ 
+@import url("src-simplegrid-14.11/01-simplegrid-base.css");
+@import url("src-simplegrid-14.11/02-simplegrid-aligngrid.css"); 
+@import url("src-simplegrid-14.11/03-simplegrid-widths.css"); 
+@import url("src-simplegrid-14.11/04-simplegrid-article.css"); 
+@import url("src-simplegrid-14.11/05-simplegrid-sidebars.css"); 
+@import url("src-simplegrid-14.11/06-plusimplegrid-12cols.css"); 

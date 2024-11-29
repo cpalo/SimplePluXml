@@ -1,0 +1,58 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleGrid
+ * @subpackage   Alignments for grid-items
+ * @version 	 14.11 
+ * @file		 css/src-simplegrid-14.11/02-simplegrid-aligngrid.css 
+ * @lastmodified 2024-11-29
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 02 - SIMPLEGRID - HELPERS FOR ALIGNMENTS ON THE GRID
+ * ------------------------------------------------------------
+ *
+ * Table of Content 
+	------------------
+	4 - Grid-Items : Helpers for alignments on the grid	
+*/
+
+
+/* ------------------------------------------------------------
+ * - 04 - Grid-Items : Helpers for alignments on the grid
+ * ------------------------------------------------------------ */
+ 
+.align-full   { grid-column: full; }
+.align-wide   { grid-column: wide; }
+.align-content{ grid-column: content; }
+.align-middle { grid-column: middle; }
+
+.align-full-left { grid-column: full-start / content-end; }
+.align-full-right { grid-column: content-start / full-end; }
+.align-wide-left { grid-column: wide-start / content-end; }
+
+@media (min-width: 768px) {
+	.md-align-full   { grid-column: full; }
+	.md-align-wide   { grid-column: wide; }
+	.md-align-content{ grid-column: content; }
+	.md-align-middle   { grid-column: middle; }
+}
+
+@media (min-width: 992px) {
+	.lg-align-full   { grid-column: full; }
+	.lg-align-wide   { grid-column: wide; }
+	.lg-align-content{ grid-column: content; }
+	.lg-align-middle   { grid-column: middle; }
+	
+	.to-right{ grid-column: content-end / wide-end; }
+	.to-left { grid-column: wide-start / content-start; }
+	
+}
+
+@media (min-width: 1330px) {
+	.xl-align-full   { grid-column: full; }
+	.xl-align-wide   { grid-column: wide; }
+	.xl-align-content{ grid-column: content; }
+	.xl-align-middle   { grid-column: middle; }
+}
+

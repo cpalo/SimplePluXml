@@ -1,0 +1,412 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimplePluCss
+ * @subpackage   Grid-12columns
+ * @version 	 14.09 
+ * @file		 css/simpleplucss-grid-12col-14.09.css 
+ * @lastmodified 2024-09-07
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 08 - SIMPLE-PLUCSS  GRID-12COLUMNS WITH CSS-GRID
+ * ------------------------------------------------------------
+ *
+ *
+	Table of Content :
+	------------------
+	8. Positionning		
+		6.1 - Styles de base
+        8.2 - Helpers for positioning	
+ */
+ 
+ 
+/**
+ * Simplified version of SimpleGrid adapted for simplePluCss
+ * Unlike SimpleGrid we keep the traditional system a grid of 12 columns
+ * (--> but this limits the possibilities offered by Css Grid-Layout).
+ * By replacing its "traditional" grid of 12 columns with "float"
+ * by grids with css grid-layout.
+ */
+ 
+ 
+/* ------------------------------------------------------------
+ * - - 8.1 - Classes fixing useful widths
+ * ------------------------------------------------------------ */
+ 
+:root {
+	/* --scrollbar-width: calc(100vw - 100%); */
+	--scrollbar-width: 16px;	
+	/* Largeur maximale utilisée par le contenu */
+	--max-width-content: 1280px;
+	--padding-container: calc(var(--fs) * 1);   /* .9375rem; <-- 1.5rem */
+	--fs: .9375rem;
+}
+
+@media (min-width: 768px) {
+	:root {
+		--padding-container: calc(var(--fs) * 1.25);	/* 1.25rem; <-- 2rem */		
+	}	
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--padding-container: calc(var(--fs) * 1.875);	/* 1.875rem; <-- 3rem */
+	} 
+}
+
+/**
+ * Attention :
+ * ----------
+ * These classes are not used to center the child items of a grid-container
+ * They are used to center the grid-container.
+ */
+
+.full-width {
+	width: 100%;
+}
+ 
+.wide-width {
+	width: var(--width-wide);
+	max-width: var(--max-width-wide);
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.content-width {
+	max-width: var(--max-width-content);	
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+.container {	
+	width: 100%;
+	max-width: var(--max-width-content);
+	margin-left: auto;
+	margin-right: auto;
+	padding-left:  var(--padding-container);   
+	padding-right: var(--padding-container);   
+}	
+
+
+/* ------------------------------------------------------------
+ * - - 8.2 - A global grid applied to the body
+ * ------------------------------------------------------------ */
+
+/** 
+ * In the case of the default PluXml theme this might not seem to offer any particular interest.
+ * If only:
+ * {min-height: 100vh} ensures that the <body> always takes up at least the total height of the <viewport>
+ * it will be possible to assign precise heights to the lines,
+ * --> in particular, if we want the main-content to occupy all of the available space
+ * --> we will set the height of its "row" to 1 fr. 
+ */
+ 
+/** Breakpoint from which the grid has several columns
+  * creating external margins ("wide" and "full")
+  * centering the content and setting a maximum width for the content.
+  */
+  
+ .grid-body-12col {
+	
+	--gutter: 0px;	   /* column-gap */	
+	--spacing: 1.5rem; /* row-gap */ 	
+	
+	display: grid;		
+	column-gap: var(--gutter);				
+	row-gap:    var(--spacing);
+	
+	/* largeurs des marges externes */	
+	--margin-full: minmax(0, 1fr);
+	--margin-wide: minmax(0, 1fr);
+	
+	/* ($ContentWidth - ($numberOfGuttersContent * $gutterWidth)) / $numberOfColumns */
+	--nb-col-content: 12;	 
+	--part-gutters-content: calc(( var(--nb-col-content) - 1 ) * var(--gutter));
+	--max-width-col: calc((var(--max-width-content) - var(--part-gutters-content)) / var(--nb-col-content));
+	
+	/* layout pour le contenu entre les marges externes */
+	--layout-content:
+		[content-start left-start left-end main-start]
+			repeat(var(--nb-col-content), minmax(auto, var(--max-width-col)))				
+		[main-end right-start right-end content-end];
+	
+	grid-template-columns:
+		/* Marges externes gauche */
+		[full-start] 
+			var(--margin-full)								
+		[wide-start] 
+			var(--margin-wide) 
+		/* Zone de contenu */
+			var(--layout-content)
+		/* Marges externes droite */
+			var(--margin-wide) 
+		[wide-end]
+			var(--margin-full)
+		[full-end];
+}
+
+@media (min-width: 768px) {
+
+	.grid-body-12col {		
+		--gutter: 16px;
+	}
+}
+@media (min-width: 992px) {
+
+	.grid-body-12col {		
+		--gutter: 20px;
+	}
+} 
+  
+/**
+ * Classes on the body depending on the display mode
+ *------------------------------------------------
+ * The display modes applied to the body will also allow different layouts
+ * like assigning certain precise line heights
+ * in particular, if we want the main-content to occupy the entire available space
+ * --> by setting the height of its "row" to 1 fr.
+ * Or to display or not a sidebar. 
+ */ 
+
+.mode-home,
+.mode-categorie,
+.mode-archives,
+.mode-tags,
+.mode-erreur {
+	grid-template-rows:
+		auto 		/* header */
+		auto    	/* hero */
+		1fr			/* main */
+		auto;		/* footer */
+}
+.mode-article,
+.mode-static {
+	grid-template-rows:
+		auto 	/* header */
+	    1fr		/* main */
+		auto;	/* footer */
+}
+.mode-static.is-home {
+	grid-template-rows:
+		auto 	/* header */
+		auto    /* hero */
+		1fr		/* main */
+		auto;	/* footer */
+}
+.mode-static:not(.is-home) {}
+
+.mode-static.as-onepage {}
+
+/** 
+ * To set a maximum width, replace the widths given to the margins
+ * by a formula calculating the space left available by the maximum width of the content.
+ * The difficulty is to define the maximum width of the columns
+ * Indeed in minmax(1fr, value) if value < 1fr value is not taken into account.
+ */
+ 
+ 
+/* ------------------------------------------------------------
+ * - - 8.3 - Grid containers to position components
+ * ------------------------------------------------------------ */
+ 
+ .grid-cols-12 {
+	display: grid;
+	column-gap: var(--gutter);				
+	row-gap:    var(--spacing);
+	
+	--nb-col: 12;
+	grid-template-columns: repeat(var(--nb-col),minmax(auto, 1fr));
+}
+
+.grid-cols-1 { --nb-col: 1; }
+.grid-cols-2 { --nb-col: 2; }
+.grid-cols-3 { --nb-col: 3; }
+.grid-cols-4 { --nb-col: 4; }
+.grid-cols-5 { --nb-col: 5; }
+.grid-cols-6 { --nb-col: 6; }
+.grid-cols-12{ --nb-col:12; } 
+ 
+ 
+/* ------------------------------------------------------------
+ * - - 8.4 - Direct child blocks of containers
+ * ------------------------------------------------------------ */
+ 
+ /**
+ * By default display: block; make 100% of their parent.
+ * Likewise the content of a grid-item is 100% of the item.
+ * If an item is full-width --> grid-column: 1 / -1;
+ */
+ 
+/* By default, we have chosen that the children of a grid-container make 100% of its container */
+
+.grid-body-12col > *,
+.grid-cols-12 > * {
+	grid-column: 1 / -1;
+}
+
+/* Each element that will be a child of the grid container can get one of these classes: */
+
+.align-full	   { grid-column: 1 / -1; }
+.align-wide    { grid-column: 2 / -2; }	
+.align-content { grid-column: 3 / -3; }
+
+.show { display: initial; }
+.hide {	display: none; } 
+.sticky {
+	position: sticky;
+	top: 0;
+}
+
+.col-1 { grid-column: span 1; }
+.col-2 { grid-column: span 2; }
+.col-3 { grid-column: span 3; }	 
+.col-4 { grid-column: span 4; }
+.col-5 { grid-column: span 5; }
+.col-6 { grid-column: span 6; }
+.col-7 { grid-column: span 7; }
+.col-8 { grid-column: span 8; }
+.col-9 { grid-column: span 9; }
+.col-10{ grid-column: span 10;}
+.col-11{ grid-column: span 11;}
+.col-12{ grid-column: span 12;}
+
+@media (min-width: 576px) {
+	.col-sm-1 { grid-column: span 1; }
+	.col-sm-2 { grid-column: span 2; }
+	.col-sm-3 { grid-column: span 3; }	 
+	.col-sm-4 { grid-column: span 4; }
+	.col-sm-5 { grid-column: span 5; }
+	.col-sm-6 { grid-column: span 6; }
+	.col-sm-7 { grid-column: span 7; }
+	.col-sm-8 { grid-column: span 8; }
+	.col-sm-9 { grid-column: span 9; }
+	.col-sm-10{ grid-column: span 10;}
+	.col-sm-11{ grid-column: span 11;}
+	.col-sm-12{ grid-column: span 12;}
+} 
+
+@media (min-width: 768px) {
+	.col-md-1 { grid-column: span 1; }
+	.col-md-2 { grid-column: span 2; }
+	.col-md-3 { grid-column: span 3; }	 
+	.col-md-4 { grid-column: span 4; }
+	.col-md-5 { grid-column: span 5; }
+	.col-md-6 { grid-column: span 6; }
+	.col-md-7 { grid-column: span 7; }
+	.col-md-8 { grid-column: span 8; }
+	.col-md-9 { grid-column: span 9; }
+	.col-md-10{ grid-column: span 10;}
+	.col-md-11{ grid-column: span 11;}
+	.col-md-12{ grid-column: span 12;} 
+}
+
+@media (min-width: 992px) {
+	.col-lg-1 { grid-column: span 1; }
+	.col-lg-2 { grid-column: span 2; }
+	.col-lg-3 { grid-column: span 3; }	 
+	.col-lg-4 { grid-column: span 4; }
+	.col-lg-5 { grid-column: span 5; }
+	.col-lg-6 { grid-column: span 6; }
+	.col-lg-7 { grid-column: span 7; }
+	.col-lg-8 { grid-column: span 8; }
+	.col-lg-9 { grid-column: span 9; }
+	.col-lg-10{ grid-column: span 10;}
+	.col-lg-11{ grid-column: span 11;}
+	.col-lg-12{ grid-column: span 12;}
+}
+
+@media (min-width: 1330px) {
+	.col-xl-1 { grid-column: span 1; }
+	.col-xl-2 { grid-column: span 2; }
+	.col-xl-3 { grid-column: span 3; }	 
+	.col-xl-4 { grid-column: span 4; }
+	.col-xl-5 { grid-column: span 5; }
+	.col-xl-6 { grid-column: span 6; }
+	.col-xl-7 { grid-column: span 7; }
+	.col-xl-8 { grid-column: span 8; }
+	.col-xl-9 { grid-column: span 9; }
+	.col-xl-10{ grid-column: span 10;}
+	.col-xl-11{ grid-column: span 11;}
+	.col-xl-12{ grid-column: span 12;}
+ }
+ 
+
+/* ------------------------------------------------------------
+ * - - 8.5 - Plx-Grid Float 12 columns (extracts)
+ * ------------------------------------------------------------ */
+ 
+/**
+  * PluCss grid reduced to what is strictly necessary 
+  * for backward compatibility with certain components.
+  */
+  
+.container {
+	margin: 0 auto;
+	max-width: 1280px;
+	padding-left:  var(--spacing-1);
+	padding-right: var(--spacing-1);
+	width: 100%;
+}  
+  
+.grid {
+	overflow: hidden;
+	margin-left: calc(var(--spacing-1) * -1);
+	margin-right: calc(var(--spacing-1) * -1);		
+}
+	.col {
+		float: left;
+		position: relative;
+		min-height: 1px;
+		padding-left:  var(--spacing-1);	
+		padding-right: var(--spacing-1);
+		width: 100%;
+	}
+	
+.col.sml-1,
+.gallery.sml-1 li {
+	width: 8.3333%;
+}	
+
+.col.sml-12,
+.gallery.sml-12 li {
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	
+	.container {
+		padding-left:  1.25rem;		/*  2rem; */
+		padding-right: 1.25rem;		/*  2rem; */	
+	}
+	
+	.col.med-5,
+	.gallery.med-5 li {
+		width: 41.6666%;
+	}
+	.col.med-7,
+	.gallery.med-7 li {
+		width: 58.3333%;
+	}
+}
+
+@media (min-width: 1330px) {
+
+	.container {
+		padding-left:  1.875rem;	/* 3rem; */
+		padding-right: 1.875rem;	/* 3rem; */
+	}
+	
+	.col.lrg-4,
+	.gallery.lrg-4 li {
+		width: 33.3333%;
+	}	
+	.col.lrg-6,
+	.gallery.lrg-6 li {
+		width: 50%;
+	}
+	.col.lrg-8,
+	.gallery.lrg-8 li {
+		width: 66.6666%;
+	}	
+}

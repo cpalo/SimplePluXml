@@ -1,0 +1,163 @@
+/* @charset "UTF-8"; */
+
+/**
+ * @package 	 SimpleGrid
+ * @subpackage   Sidebars
+ * @version 	 14.11 
+ * @file		 css/src-simplegrid-14.11/04-simplegrid-sidebars.css 
+ * @lastmodified 2024-11-29
+ *
+ *
+ * ------------------------------------------------------------
+ * --- 05 - SIMPLEGRID - SIDEBARS
+ * ------------------------------------------------------------
+ *
+ * Table of Content 
+	------------------
+	1 - 	
+		5.1 - 
+		5.2 - 
+*/
+
+
+/* ------------------------------------------------------------
+ * - 05 - Some basic layouts with sidebars
+ * ------------------------------------------------------------ */
+ 
+ @media (min-width: 768px) {
+	 
+	.md-has-left-sidebar, 
+	.md-has-right-sidebar { 
+
+		grid-auto-flow: dense;	
+	}
+	
+	/* classes to use if we choose that a first “Sidebar” is displayed on the right */	
+	.md-has-right-sidebar .grid-body {	
+		grid-template-columns:		
+			/* Left outer margin */
+			[full-start] 
+				var(--margin-full)	
+			/* Content area */
+			[wide-start] 
+				var(--wide-side)
+			[content-start left-start left-end middle-start]
+				var(--content-middle)
+			[middle-end right-start]
+				var(--content-side)
+			[right-end content-end]	
+				var(--wide-side)
+			[wide-end]
+			/* Right outer margins */
+				var(--margin-full)
+			[full-end];	
+			
+		--padding-grid: 0px;
+		--margin-full: minmax(var(--padding-grid), 1fr);
+			
+		--wide-max-width: 1600px;
+		--wide-side: min(6%, calc((var(--wide-max-width) - var(--content-max-width)) / 2));
+		
+		--content-max-width: 1200px;
+		--middle-max-width: 800px;
+		--content-side: min(30%, calc((var(--content-max-width) - var(--middle-max-width)) / 1));
+		--content-middle: min(calc(58% - 2 * var(--padding-grid) - 5 * var(--gutter-w)), var(--middle-max-width))	
+	}
+	
+	.md-right-side { grid-column: right; }	
+ }  
+ 
+ @media (min-width: 992px) {
+	 
+	.lg-has-left-sidebar, 
+	.lg-has-right-sidebar { 
+		grid-auto-flow: dense;		
+	}
+	
+	/* classes to use if we choose that a first “Sidebar” is displayed on the right */	
+	/*.lg-has-right-sidebar .grid-content,*/
+	.lg-has-right-sidebar .grid-body {	
+	--gutter-w: 2rem;
+	/*justify-items: end;*/
+		grid-template-columns:		
+			/* Left outer margin */
+			[full-start] 
+				var(--margin-full)	
+			/* Content area */
+			[wide-start] 
+				var(--wide-side)
+			[content-start left-start left-end middle-start]
+				var(--content-middle)
+			[middle-end right-start]
+				var(--content-side)
+			[right-end content-end]	
+				var(--wide-side)
+			[wide-end]
+			/* Right outer margins */
+				var(--margin-full)
+			[full-end];	
+			
+		--padding-grid: 0px;
+		--margin-full: minmax(var(--padding-grid), 1fr);
+			
+		--wide-max-width: 1600px;
+		--wide-side: min(6%, calc((var(--wide-max-width) - var(--content-max-width)) / 2));
+		
+		--content-max-width: 1200px;
+		--middle-max-width: 800px;
+		--content-side: min(30%, calc((var(--content-max-width) - var(--middle-max-width)) / 1));
+		--content-middle: min(calc(58% - 2 * var(--padding-grid) - 5 * var(--gutter-w)), var(--middle-max-width))
+			
+	}	
+	.lg-right-side { grid-column: right; }	
+	
+	.lg-right-side {
+		display: grid;
+		justify-self: end;
+	}
+ }
+ 
+ 
+ @media (min-width: 1330px) {
+	 
+	.lg-has-left-sidebar, 
+	.lg-has-right-sidebar { 
+		grid-auto-flow: dense;	
+	}
+	
+	/* classes to use if we choose that a first “Sidebar” is displayed on the right */	
+	.xl-has-two-sidebars .grid-body {	
+		grid-template-columns:		
+			/* Left outer margin */
+			[full-start] 
+				var(--margin-full)	
+			/* Content area */
+			[wide-start] 
+				var(--wide-side)
+			[content-start left-start left-end middle-start]
+				var(--content-middle)
+			[middle-end right-start]
+				var(--content-side)
+			[right-end content-end]	
+				var(--wide-side)
+			[wide-end]
+			/* Right outer margins */
+				var(--margin-full)
+			[full-end];	
+			
+		--padding-grid: 0px;
+		--margin-full: minmax(var(--padding-grid), 1fr);
+			
+		--wide-max-width: 1600px;
+		--wide-side: min(6%, calc((var(--wide-max-width) - var(--content-max-width)) / 2));
+		
+		--content-max-width: 1200px;
+		--middle-max-width: 800px;
+		--content-side: min(30%, calc((var(--content-max-width) - var(--middle-max-width)) / 1));
+		--content-middle: min(calc(58% - 2 * var(--padding-grid) - 5 * var(--gutter-w)), var(--middle-max-width))
+			
+	}	
+	.lg-right-side { grid-column: right; }	
+ }
+
+	
